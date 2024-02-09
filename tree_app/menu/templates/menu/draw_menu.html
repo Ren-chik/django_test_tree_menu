@@ -1,0 +1,23 @@
+{% load menu_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for item in menu_items %}
+<ul>
+    <details>
+        <summary><a href="{{ item.slug }}">{{ item.name_item }}</a></summary>
+        {% if item.sub_menu.all %}
+        {% with menu_items=item.sub_menu.all %}
+        {% include 'menu/draw_menu.html' %}
+        {% endwith %}
+        {% endif %}
+    </details>
+</ul>
+{% endfor %}
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</html>
